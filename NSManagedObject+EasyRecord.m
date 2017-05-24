@@ -27,6 +27,8 @@
 #import "NSManagedObject+EasyRecord.h"
 #import "FAEasyRecord.h"
 
+#define DEFAULT_CONTEXT [NSManagedObjectContext ER_defaultContext]
+
 @implementation NSManagedObject (EasyRecord)
 
 + (instancetype)ER_createEntityInContext:(NSManagedObjectContext *)context

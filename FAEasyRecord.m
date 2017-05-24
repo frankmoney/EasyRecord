@@ -62,9 +62,9 @@
          
          [backContext save:nil];
          
-         [DEFAULT_CONTEXT performBlock:^
+         [[NSManagedObjectContext ER_defaultContext] performBlock:^
           {
-              [DEFAULT_CONTEXT save:nil];
+              [[NSManagedObjectContext ER_defaultContext] save:nil];
               
               if(completion)
               {
