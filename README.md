@@ -32,9 +32,9 @@ __Find some data__
 
 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", MyManagedObjectRelationships.otherData, data];
 NSFetchedResultsController *frc = [MyManagedObject ER_fetchAllGroupedBy:@"count"
-			                                                   withPredicate:predicate
-									                                            sortedBy:MyManagedObjectAttributes.uid
-                                                             ascending:YES
+                                                          withPredicate:predicate
+                                                              sortedBy:MyManagedObjectAttributes.uid
+                                                              ascending:YES
                                                               delegate:self];
   NSArray *result = frc.fetchedObjects;
 
