@@ -1,8 +1,46 @@
 # EasyRecord
 Shorthand Core Data tool
 
+In fact this tool is extension category for standard Core Data classes. It will allow you to more easily perform typical standard operations: creating context, queries, filters and so on. Also this tool elaborate for easily create a core data storage in memory.
+
 # Usage
 
+Just include main header `#import "FAEasyRecord.h"` file into your code, and then:
+
+__Init core data stack in memory__
+
+`[FAEasyRecord setupCoreDataStackWithInMemoryStore];`
+
+__Save some data__
+
+```objectivec
+
+NSDictionary *data = //some dict data
+[FAEasyRecord saveWithBlock:^(NSManagedObjectContext *localContext){
+    [FEMDeserializer objectFromRepresentation:data
+                                      mapping:[SomeManagedObject defaultMapping]
+                                      context:localContext];
+}
+completion:^(BOOL contextDidSave, NSError *error){
+          // some completion there
+}];
+```
+
+__Find some data__
+
+```objectivec
+
+NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", MyManagedObjectRelationships.otherData, data];
+NSFetchedResultsController *frc = [MyManagedObject ER_fetchAllGroupedBy:@"count"
+			                                                   withPredicate:predicate
+									                                            sortedBy:MyManagedObjectAttributes.uid
+                                                             ascending:YES
+                                                              delegate:self];
+  NSArray *result = frc.fetchedObjects;
+
+```
+
+Also for that tool we recommend use [mogenerator tool](https://github.com/rentzsch/mogenerator).
 
 # MIT License
 
